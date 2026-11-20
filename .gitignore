@@ -1,0 +1,90 @@
+# Dance Echo —— 工作区卫生规则（2026-11-10 发布前重写）
+#
+# 发布策略：首次提交使用「白名单 git add」精确放行（见随附的发布命令页）。
+# 本文件是第二道安全网：即使误跑 `git add .`，也不会把
+#   个人视频 / VRM / 大二进制 / 运行时数据 / 临时产物 / 内部文档
+# 带进版本控制。
+#
+# 现实：本工作区混有约 6 GB 媒体本体、几十张调试截图、Agent 缓存、
+# 录屏、论文与历史留档；它们一律不发布。仓库当前尚未 git init。
+
+# ── 依赖与构建产物 ─────────────────────────────────────────────
+**/node_modules/
+**/dist/
+**/build/
+**/.vite/
+**/coverage/
+*.tsbuildinfo
+
+# ── 个人视频 / 媒体本体（约 6.3 GB，绝不入库）─────────────────
+# 注意：旧规则 vidio/*.mp4 只挡顶层，uploads/ 子目录会漏进来
+vidio/**
+!vidio/.gitkeep
+local vidio store/fixtures/
+
+# ── VRM 模型（遗留资产，当前代码已不读取，不发布）──────────────
+vrm/
+**/*.vrm
+
+# ── ffmpeg 二进制（单个约 105 MB > GitHub 100 MB 上限）─────────
+tools/ffmpeg/
+
+# ── 前端姿态 / WASM 资产（约 80 MB，代码内置 CDN 兜底）──────────
+# 不随仓库分发；保留 .gitkeep 让目录存在。若要完全离线，
+# 可自行把文件放回 public/ 后 git add -f。
+local vidio store/public/models/
+local vidio store/public/wasm/
+!local vidio store/public/.gitkeep
+
+# ── 服务端运行时数据 / 本机配置 ────────────────────────────────
+DanceEcho Server/data/
+DanceEcho Server/config.json
+DanceEcho Server/server-test.log
+
+# ── 录屏 / 调试截图 / mockup 产物 ──────────────────────────────
+# gitignore 中不带斜杠的模式在任意目录层级生效
+recordings/
+*.png
+*.jpg
+*.jpeg
+*.webm
+*.mp4
+*.mov
+*.mkv
+local vidio store/scripts/**/*.html
+
+# ── 测试与 Agent 临时产物 ──────────────────────────────────────
+local vidio store/scripts/.demo-video/
+local vidio store/.e2e-logs/
+local vidio store/tmp-*.cjs
+local vidio store/PROGRESS.md
+.scratch/
+.tmp/
+.tmp*/
+.shots/
+.esbuild-tmp/
+.playwright-mcp/
+.playwright/
+.pnpm-store/
+.py/
+.mineru/
+.mineru-home/
+.paper/
+.dsh-office-*/
+review-*.png
+verify-*.png
+server-*.png
+
+# ── 内部 / 历史文档（不发布）───────────────────────────────────
+AGENT_GUIDES/
+docs/agents/
+docs/paper/
+docs/reports/
+docs/superpowers/
+docs/demo/
+
+# ── 编辑器 / 系统 ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.tmp
+*.log

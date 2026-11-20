@@ -1,0 +1,6 @@
+{
+  "mediaRoot": "../vidio",
+  "port": 8090,
+  "mounts": [],
+  "thumbFfmpegPath": ""
+}

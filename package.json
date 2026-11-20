@@ -1,0 +1,25 @@
+{
+  "name": "dance-echo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Dance Echo (舞韵回响) - 本地视频学习与 3D 动作捕捉工作台",
+  "scripts": {
+    "dev": "npm --prefix \"local vidio store\" run dev",
+    "build": "npm --prefix \"local vidio store\" run build",
+    "preview": "npm --prefix \"local vidio store\" run preview",
+    "test": "npm --prefix \"local vidio store\" test",
+    "test:all": "node \"local vidio store/scripts/run-e2e-all.mjs\"",
+    "serve": "node serve.js",
+    "start": "npm --prefix \"local vidio store\" run dev"
+  },
+  "keywords": [
+    "dance",
+    "motion-capture",
+    "mediapipe",
+    "threejs",
+    "vrm"
+  ],
+  "author": "Dance Echo Team",
+  "license": "MIT"
+}

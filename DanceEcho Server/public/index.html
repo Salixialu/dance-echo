@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Dance Echo · 媒体库（服务端）</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <h1>Dance Echo <span class="brand-sub">· 媒体库（服务端）</span></h1>
+        </div>
+        <div class="root-path" id="rootPath">正在加载媒体库…</div>
+      </div>
+      <div class="topbar-right">
+        <div class="metrics" id="metrics">
+          <span class="metric"><b id="totalCount">–</b> 个视频</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="metric" id="totalSize">–</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="metric metric-dim" id="scannedAt">–</span>
+        </div>
+        <div class="controls">
+          <div class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-3.6-3.6"></path>
+            </svg>
+            <input id="searchInput" type="search" placeholder="搜索视频名称…" autocomplete="off" />
+          </div>
+          <select id="sortSelect" aria-label="排序方式">
+            <option value="date-desc">日期 ↓</option>
+            <option value="date-asc">日期 ↑</option>
+            <option value="name">名称</option>
+            <option value="size">大小</option>
+          </select>
+          <button id="openAppBtn" class="btn-ghost" type="button">进入工作台</button>
+          <button id="rescanBtn" class="btn-primary" type="button">重新扫描</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-head">
+          <span>日期文件夹</span>
+          <span class="sidebar-hint">点击筛选</span>
+        </div>
+        <nav id="dateTree" class="date-tree" aria-label="按日期筛选"></nav>
+        <div class="sidebar-foot">
+          <span class="legend-dot"></span>
+          <span>按 MP4 拍摄时间或文件修改时间归组</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="main-head">
+          <div id="resultLabel" class="result-label">正在载入…</div>
+          <div id="activeFilter" class="active-filter"></div>
+        </div>
+        <div id="grid" class="grid" aria-live="polite"></div>
+        <div id="empty" class="empty hidden">
+          <div class="empty-icon" aria-hidden="true">◎</div>
+          <p id="emptyText">没有匹配的视频</p>
+          <button id="clearFilterBtn" class="btn-ghost" type="button">清除筛选</button>
+        </div>
+      </main>
+    </div>
+
+    <div id="player" class="player hidden" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="player-shell" id="playerShell">
+        <div class="player-head">
+          <div class="player-title-wrap">
+            <h2 id="playerTitle">—</h2>
+            <div id="playerMeta" class="player-meta"></div>
+          </div>
+          <div class="player-tools">
+            <label class="speed">
+              <span>倍速</span>
+              <select id="speedSelect" aria-label="播放速度">
+                <option value="0.5">0.5×</option>
+                <option value="0.75">0.75×</option>
+                <option value="1" selected>1×</option>
+                <option value="1.25">1.25×</option>
+                <option value="1.5">1.5×</option>
+                <option value="2">2×</option>
+              </select>
+            </label>
+            <button id="closePlayer" class="icon-btn" type="button" title="关闭（Esc）" aria-label="关闭播放器">✕</button>
+          </div>
+        </div>
+        <div class="player-stage">
+          <video id="playerVideo" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="player-foot">
+          <div id="progressHint" class="progress-hint">—</div>
+          <div class="shortcuts">空格 播放/暂停 · ←/→ 5 秒 · F 全屏 · Esc 关闭</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
