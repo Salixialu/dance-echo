@@ -1,0 +1,30 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+coverage/
+playwright-smoke.png
+playwright-playback.png
+playwright-*.png
+debug-*.png
+immich-reference.png
+scripts/*.png
+scripts/mockup-*.html
+.DS_Store
+Thumbs.db
+
+# 仓库根目录的评审截图：只是本地留档，不进版本库
+/*.png
+/*.jpg
+/*.webp
+
+# 运行时日志
+server-*.log
+*.log
+.e2e-logs/
+
+# 一次性脚本草稿（不进版本库）
+/tmp-*.cjs
+/tmp-*.mjs

@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dark Space Theme Backgrounds */
+  --space-void: #09090b;
+  --space-surface: rgba(24, 24, 27, 0.75);
+  --space-elevated: #27272a;
+  --space-panel: rgba(24, 24, 27, 0.75);
+  --space-overlay: rgba(9, 9, 11, 0.85);
+
+  /* 1px Hairline Borders */
+  --border-hairline: rgba(255, 255, 255, 0.07);
+  --border-hairline-subtle: rgba(255, 255, 255, 0.04);
+  --border-hairline-hover: rgba(255, 255, 255, 0.15);
+
+  /* Accent Colors */
+  --accent-cyan: #22d3ee;
+  --accent-purple: #c084fc;
+  --accent-emerald: #34d399;
+  --accent-amber: #fbbf24;
+  --accent-silver: #e4e4e7;
+}
+
+@layer base {
+  body {
+    background-color: var(--space-void);
+    color: var(--accent-silver);
+    @apply antialiased overflow-x-hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+
+  /* Raycast / RunwayML 极细精致发丝滚动条 (4px) */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    transition: background 0.15s ease;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+@layer utilities {
+  .border-hairline {
+    border-color: var(--border-hairline);
+  }
+  .border-hairline-hover:hover {
+    border-color: var(--border-hairline-hover);
+  }
+  .bg-space-void {
+    background-color: var(--space-void);
+  }
+  .bg-space-surface {
+    background-color: var(--space-surface);
+  }
+  .bg-space-elevated {
+    background-color: var(--space-elevated);
+  }
+
+  /* 真正隐藏滚动条（此前多处写了 no-scrollbar 但样式并未定义，
+     导致面包屑/工具栏下面露出一条灰色滚动条，观感像"多出来的滑块"） */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
