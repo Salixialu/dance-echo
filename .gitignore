@@ -83,6 +83,10 @@ docs/reports/
 docs/superpowers/
 docs/demo/
 
+# ── Agent 工作记录 / 待办（内部，不发布）─────────────────────
+.workbuddy/
+local vidio store/tasks/
+
 # ── 编辑器 / 系统 ──────────────────────────────────────────────
 .DS_Store
 Thumbs.db
